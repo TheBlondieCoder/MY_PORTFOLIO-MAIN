@@ -10,21 +10,17 @@ import { useRef, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import { a } from "@react-spring/three";
-import islandScene from "../assets/3d/island.glb";
 
 export function Island(props) {
   const { isRotating, setIsRotating, setCurrentStage } = props;
 
   const islandRef = useRef();
+  const lastX = useRef(0);
+  const rotationSpeed = useRef(0); // Only declare once
+  const dampingFactor = 0.95; // Only declare once
 
   const { gl, viewport } = useThree();
-  const { nodes, materials } = useGLTF(islandScene);
-
-  const lastX = useRef(0);
-  const rotationSpeed = useRef(0);
-  const dampingFactor = 0.95;
-
-  //  handlePointerDown //
+  const { nodes, materials } = useGLTF("/3d/island.glb");
 
   const handlePointerDown = (e) => {
     e.stopPropagation();
@@ -32,13 +28,8 @@ export function Island(props) {
     setIsRotating(true);
 
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-
     lastX.current = clientX;
-
-    // handlePointerUp //
   };
-
-  // handlePointerUp //
 
   const handlePointerUp = (e) => {
     e.stopPropagation();
@@ -46,43 +37,39 @@ export function Island(props) {
     setIsRotating(false);
   };
 
-  // handlePointerMove //
-
   const handlePointerMove = (e) => {
     e.stopPropagation();
     e.preventDefault();
 
-    if (isRotating) {
+    if (isRotating && islandRef.current) {
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-
       const delta = (clientX - lastX.current) / viewport.width;
-      islandRef.current.rotation.y += delta * 0.01 * Math.PI;
+      rotationSpeed.current = delta * 0.005 * Math.PI; // Adjust for sensitivity
+      islandRef.current.rotation.y += rotationSpeed.current;
       lastX.current = clientX;
-      rotationSpeed.current = delta * 0.01 * Math.PI;
     }
   };
-
-  // handleKeyDown //
 
   const handleKeyDown = (e) => {
-    if (e.key === "ArrowLeft") {
-      if (!isRotating) setIsRotating(true);
-      islandRef.current.rotation.y += 0.01 * Math.PI;
-    } else if (e.key === "ArrowRight") {
-      if (!isRotating) setIsRotating(true);
-      islandRef.current.rotation.y -= 0.01 * Math.PI;
+    if (
+      (e.key === "ArrowLeft" || e.key === "ArrowRight") &&
+      islandRef.current
+    ) {
+      setIsRotating(true);
+      const rotationChange =
+        e.key === "ArrowLeft" ? 0.01 * Math.PI : -0.01 * Math.PI;
+      islandRef.current.rotation.y += rotationChange;
     }
   };
 
-  // handleKeyUp //
-
   const handleKeyUp = (e) => {
-    if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+    if (
+      (e.key === "ArrowLeft" || e.key === "ArrowRight") &&
+      islandRef.current
+    ) {
       setIsRotating(false);
     }
   };
-
-  // useEffect //
 
   useEffect(() => {
     const Canvas = gl.domElement;
@@ -108,38 +95,30 @@ export function Island(props) {
     handleKeyUp,
   ]);
 
-  // useFrame //
-
   useFrame(() => {
-    if (!isRotating) {
-      rotationSpeed.current *= dampingFactor;
-      // **
-      if (Math.abs(rotationSpeed.current) < 0.001) {
-        rotationSpeed.current = 0;
+    if (islandRef.current) {
+      if (!isRotating) {
+        rotationSpeed.current *= dampingFactor;
+        islandRef.current.rotation.y += rotationSpeed.current;
+
+        if (Math.abs(rotationSpeed.current) < 0.001) {
+          rotationSpeed.current = 0;
+        }
       }
-      islandRef.current.rotation.y += rotationSpeed.current;
-    } else {
       const rotation = islandRef.current.rotation.y;
-      // **
       const normalizedRotation =
         ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
 
-      // Set the current stage based on the island's orientation
-      switch (true) {
-        case normalizedRotation >= 5.45 && normalizedRotation <= 5.85:
-          setCurrentStage(4);
-          break;
-        case normalizedRotation >= 0.85 && normalizedRotation <= 1.3:
-          setCurrentStage(3);
-          break;
-        case normalizedRotation >= 2.4 && normalizedRotation <= 2.6:
-          setCurrentStage(2);
-          break;
-        case normalizedRotation >= 4.25 && normalizedRotation <= 4.75:
-          setCurrentStage(1);
-          break;
-        default:
-          setCurrentStage(null);
+      console.log(normalizedRotation);
+
+      if (normalizedRotation >= 0 && normalizedRotation < 1.57) {
+        setCurrentStage(1); // Front
+      } else if (normalizedRotation >= 1.57 && normalizedRotation < 3.14) {
+        setCurrentStage(2); // Right
+      } else if (normalizedRotation >= 3.14 && normalizedRotation < 4.71) {
+        setCurrentStage(3); // Back
+      } else if (normalizedRotation >= 4.71 || normalizedRotation < 0.1) {
+        setCurrentStage(4); // Left
       }
     }
   });
@@ -148,9 +127,9 @@ export function Island(props) {
   return (
     <a.group ref={islandRef} {...props}>
       <group {...props}>
-        <group position={[0, 8, 90]} rotation={[-Math.PI / 2, 0, 0]}>
-          <group rotation={[Math.PI / 2, 0, 0]} scale={1}>
-            <group position={[0, -5, 0]} rotation={[0, 1, 0]}>
+        <group position={[0, 35, 25]} rotation={[0, 0, 0]}>
+          <group rotation={[0, 2, 0]} scale={0.7}>
+            <group position={[0, 5, -11]} rotation={[0, 2.8, 0]}>
               <mesh
                 geometry={nodes.Final_Bridge1_Black_0.geometry}
                 material={materials.Black}

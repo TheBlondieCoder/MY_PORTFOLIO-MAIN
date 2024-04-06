@@ -5,31 +5,41 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
+import My3DScene from "./components/My3DScene";
 
 const App = () => {
   const [isDaytime, setIsDaytime] = useState(
     new Date().getHours() > 6 && new Date().getHours() < 18
   );
 
-  const toggleDayNight = () => {
-    setIsDaytime(!isDaytime);
-  };
+  const toggleDaytime = () => setIsDaytime(!isDaytime);
 
   return (
-    <main className="bg-slate-300/20 h-[100vh]">
-      <Router>
-        <Navbar
-          handleThemeChange={toggleDayNight}
-          theme={isDaytime ? "day" : "night"}
-        />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </Router>
-    </main>
+    <>
+      <div className="absolute z-10 w-full">
+        <button
+          onClick={toggleDaytime}
+          className="p-2 m-4 bg-white rounded shadow"
+        >
+          Switch to {isDaytime ? "Night" : "Day"}
+        </button>
+      </div>
+      <My3DScene isDaytime={isDaytime} />
+      <main className="bg-slate-300/20 h-[100vh] relative">
+        <Router>
+          <Navbar
+            handleThemeChange={toggleDaytime}
+            theme={isDaytime ? "day" : "night"}
+          />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </Router>
+      </main>
+    </>
   );
 };
 

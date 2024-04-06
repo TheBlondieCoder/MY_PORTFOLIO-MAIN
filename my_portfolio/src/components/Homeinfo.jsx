@@ -79,7 +79,13 @@ const HomeInfo = ({ currentStage }) => {
     );
   }
 
-  return null;
+  return (
+    <div className="relative h-screen">
+      <My3DScene currentStage={currentStage} />
+      <HomeInfo currentStage={currentStage} />
+      {/* Any other content you want on the home page */}
+    </div>
+  );
 };
 
 export default HomeInfo;

@@ -70,7 +70,7 @@ const Home = () => {
                 isRotating={isRotating}
                 scale={dragonScale}
                 position={dragonPosition}
-                rotation={[0, 20, 0]}
+                rotation={[0, 1, 0]}
               />
             </group>
 

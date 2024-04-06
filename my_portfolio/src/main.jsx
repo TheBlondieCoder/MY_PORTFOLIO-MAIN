@@ -1,23 +1,20 @@
 import * as Sentry from "@sentry/react";
+import { BrowserTracing } from "@sentry/tracing";
 import { createRoot } from "react-dom/client";
 import App from "./App";
-// Include any other necessary imports here...
 
 // Initialize Sentry as early as possible in your application
 Sentry.init({
   dsn: "https://42575ee5a1845cb77f90e7fb19a5320d@o4507026101633024.ingest.us.sentry.io/4507026123456517",
   integrations: [
-    // Presuming you have defined these integrations correctly elsewhere:
-    // Sentry.browserTracingIntegration(),
-    // Sentry.replayIntegration({
-    //   maskAllText: false,
-    //   blockAllMedia: false,
-    // }),
+    new BrowserTracing({
+      tracingOrigins: ["localhost", "yourserver.io", /^\//],
+      // Note: the above `tracingOrigins` should include any domains your application interacts with
+    }),
   ],
-  // Performance Monitoring
-  tracesSampleRate: 1.0, // Capture 100% of the transactions for monitoring
-  // Set 'tracePropagationTargets' to control for which URLs distributed tracing should be enabled
-  tracePropagationTargets: ["localhost", /^https:\/\/yourserver\.io\/api/],
+  // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
+  // Adjust this value in production according to your needs.
+  tracesSampleRate: 1.0,
   // Session Replay
   replaysSessionSampleRate: 0.1, // Sample at 10% - adjust as needed
   replaysOnErrorSampleRate: 1.0, // Capture 100% of sessions that encounter errors

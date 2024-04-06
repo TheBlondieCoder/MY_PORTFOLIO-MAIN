@@ -245,3 +245,12 @@ input:checked + .slider:before {
   border-radius: 8px;
   box-shadow: 9 2px 4px rgba(205, 187, 187, 0.3);
 }
+
+.my3dSceneContainer {
+  position: relative; /* or 'absolute' */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2%; /* Behind other content */
+}

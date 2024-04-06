@@ -2,7 +2,6 @@ import React, { useState, useRef, Suspense } from "react";
 import emailjs from "@emailjs/browser";
 import { Canvas } from "@react-three/fiber";
 
-import Truffle from "../models/truffle";
 import Loader from "../components/Loader";
 import useAlert from "../hooks/useAlert";
 import Alert from "../components/alert";
@@ -68,6 +67,8 @@ const Contact = () => {
         });
       });
   };
+
+  const modelPath = "/assets/3d/yourModel.glb";
 
   return (
     <section className="relative flex lg:flex-row flex-col max-container">

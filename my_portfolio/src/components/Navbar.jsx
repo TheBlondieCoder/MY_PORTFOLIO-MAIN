@@ -30,6 +30,7 @@ export const Navbar = ({ handleThemeChange, theme }) => {
         >
           Projects
         </NavLink>
+        
       </nav>
     </header>
   );
