@@ -11,7 +11,7 @@ import { useGLTF, useAnimations } from "@react-three/drei";
 
 const Truffle = ({ currentAnimation, ...props }) => {
   const group = useRef();
-  const { nodes, materials, animations } = useGLTF("../assets/3d/truffle.glb");
+  const { nodes, materials, animations } = useGLTF("/3d/truffle.glb");
   const { actions } = useAnimations(animations, group);
 
   useEffect(() => {
@@ -26,11 +26,7 @@ const Truffle = ({ currentAnimation, ...props }) => {
     <group ref={group} {...props} dispose={null}>
       <group name="Sketchfab_Scene">
         <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
-          <group
-            name="e4f8e14523654cbb8d2da1ed3d9e0445fbx"
-            rotation={[Math.PI / 2, 0, 0]}
-            scale={0.01}
-          >
+          <group name="truffle" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
             <group name="Object_2">
               <group name="RootNode">
                 <group
