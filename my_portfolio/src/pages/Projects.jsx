@@ -8,7 +8,7 @@ function Projects() {
     <section className="max-container">
       <h1 className="head-text">
         My{" "}
-        <span className=" text-cyan-600 drop-shadow font-semibold">
+        <span className=" pink-gradient_text drop-shadow font-semibold">
           Projects
         </span>
       </h1>
@@ -41,7 +41,7 @@ function Projects() {
                   to={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-semibold text-cyan-600"
+                  className="font-semibold pink-gradient_text"
                 >
                   Live Link
                 </Link>

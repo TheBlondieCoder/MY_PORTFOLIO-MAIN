@@ -8,10 +8,11 @@ Title: Truffle Man
 
 import React, { useEffect, useRef } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
+import truffleScene from "../assets/3d/truffle.glb";
 
 const Truffle = ({ currentAnimation, ...props }) => {
   const group = useRef();
-  const { nodes, materials, animations } = useGLTF("/3d/truffle.glb");
+  const { nodes, materials, animations } = useGLTF(truffleScene);
   const { actions } = useAnimations(animations, group);
 
   useEffect(() => {

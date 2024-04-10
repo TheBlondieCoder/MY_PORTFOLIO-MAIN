@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from "react"; // Import useState here
+import React, { useEffect, useState } from "react";
 import { useGLTF } from "@react-three/drei";
+import Day from "../assets/3d/day.glb";
+import Night from "../assets/3d/night.glb";
+
+// Preloading models
+useGLTF.preload(Day);
+useGLTF.preload(Night);
 
 const Sky = ({ theme }) => {
-  const { scene: dayScene } = useGLTF("/3d/day.glb");
-  const { scene: nightScene } = useGLTF("/3d/night.glb");
-  const [skyScene, setSkyScene] = useState(null);
+  // Since we're preloading, we can directly load without conditional rendering
+  const dayModel = useGLTF(Day);
+  const nightModel = useGLTF(Night);
 
-  useEffect(() => {
-    // Conditionally set the scene based on the theme
-    setSkyScene(theme === "day" ? dayScene : nightScene);
-  }, [theme, dayScene, nightScene]);
-
-  if (!skyScene) return null;
+  // Determine which scene to use based on the theme
+  const skyScene = theme === "day" ? dayModel.scene : nightModel.scene;
 
   return <primitive object={skyScene} />;
 };
-
-// Preloading models outside of the component
 
 export default Sky;

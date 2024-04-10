@@ -8,11 +8,11 @@ const CTA = () => {
         Have A project in mind?
         <br className="sm:block" /> Let's build something together!
       </p>
-      <Link to="Contact.jsx" className="btn">
+      <Link to="/contact" className=" btn ">
         Contact
       </Link>
     </section>
   );
 };
 
-export default CTA;CTA
+export default CTA;

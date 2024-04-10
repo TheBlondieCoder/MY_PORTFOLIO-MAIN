@@ -12,19 +12,17 @@ const About = () => {
     <section className="max-container">
       <h1 className="head-text">
         Hello, My name Is{" "}
-        <span className="cyan-gradient_text font-semibold drop-shadow-sm">
-          Blondie Coder
-        </span>
+        <span className="pink-gradient_text font-semibold ">Blondie Coder</span>
       </h1>
       <div>
-        <p className="mt-5 flex flex-col gap-3 text-slate-500 ">
+        <p className="mt-5 flex flex-col gap-3 text-slate-800 ">
           Full Stack Web Developer based in Wisconsin, specializing in building
           websites and applications
         </p>
       </div>
 
       <div className="py-10 flex-col"></div>
-      <h3 className="subhead-text">My skills</h3>
+      <h3 className="subhead-text text-black"> My skills 👇</h3>
 
       <div className="mt-16 flex flex-wrap gap-12">
         {skills.map((skill) => (
@@ -40,7 +38,7 @@ const About = () => {
           </div>
         ))}
         <div className="py-16">
-          <h3 className="subhead-text">Work Experience.</h3>
+          <h3 className="subhead-text">Work Experience. 👇</h3>
           <div className="mt-5 flex flex-col gap-3 text-slate-500">
             <p>
               I've been working on all kinds of complicated projects, leveling

@@ -7,7 +7,7 @@ const HomeInfo = ({ currentStage }) => {
     return (
       <h1 className="sm:text-xl sm:leading-snug text-center neo-brutalism-pink py-4 px-8 text-white mx-5">
         Hi, I'm
-        <span className="font-semibold mx-2 cyan-gradient_text">
+        <span className="font-semibold mx-2 pink-gradient_text">
           BlondieCoder
         </span>
         👋
@@ -60,8 +60,8 @@ const HomeInfo = ({ currentStage }) => {
     return (
       <div className="info-box">
         <p className="font-medium sm:text-xl text-center justify-center">
-          Need a project done or looking for a dev? <br /> I'm just a few
-          keystrokes away
+          If you need a project done or looking for a dev? <br /> I'm just a
+          click away
         </p>
 
         <Link
@@ -81,7 +81,6 @@ const HomeInfo = ({ currentStage }) => {
 
   return (
     <div className="relative h-screen">
-      <My3DScene currentStage={currentStage} />
       <HomeInfo currentStage={currentStage} />
       {/* Any other content you want on the home page */}
     </div>

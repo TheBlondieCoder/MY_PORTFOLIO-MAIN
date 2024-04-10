@@ -10,6 +10,7 @@ import { useRef, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import { a } from "@react-spring/three";
+import islandScene from "../assets/3d/island.glb";
 
 export function Island(props) {
   const { isRotating, setIsRotating, setCurrentStage } = props;
@@ -20,7 +21,7 @@ export function Island(props) {
   const dampingFactor = 0.95; // Only declare once
 
   const { gl, viewport } = useThree();
-  const { nodes, materials } = useGLTF("/3d/island.glb");
+  const { nodes, materials } = useGLTF(islandScene);
 
   const handlePointerDown = (e) => {
     e.stopPropagation();
@@ -127,7 +128,7 @@ export function Island(props) {
   return (
     <a.group ref={islandRef} {...props}>
       <group {...props}>
-        <group position={[0, 35, 25]} rotation={[0, 0, 0]}>
+        <group position={[0, 30, 0]} rotation={[0, 0, 0]}>
           <group rotation={[0, 2, 0]} scale={0.7}>
             <group position={[0, 5, -11]} rotation={[0, 2.8, 0]}>
               <mesh
@@ -347,6 +348,5 @@ export function Island(props) {
     </a.group>
   );
 }
-useGLTF.preload("/island.glb");
 
 export default Island;

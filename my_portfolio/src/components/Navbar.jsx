@@ -10,13 +10,13 @@ export const Navbar = ({ handleThemeChange, theme }) => {
         to="/"
         className="w-10 h-10 rounded-lg bg-white flex font-bold shadow-md items-center justify-center "
       >
-        <p className="text-cyan-500">AB</p>
+        <p className="pink-gradient_text">Blondie</p>
       </NavLink>
       <nav className="flex text-lg font-medium">
         <NavLink
           to="/about"
           className={({ isActive }) =>
-            isActive ? "text-cyan-500 mr-4" : "text-black mr-4"
+            isActive ? "pink-gradient_text mr-4" : "pink-gradient_text mr-4"
           }
         >
           About
@@ -25,12 +25,11 @@ export const Navbar = ({ handleThemeChange, theme }) => {
         <NavLink
           to="/projects"
           className={({ isActive }) =>
-            isActive ? "text-cyan-500 ml-4" : "text-black"
+            isActive ? "pink-gradient_text" : "pink-gradient_text"
           }
         >
           Projects
         </NavLink>
-        
       </nav>
     </header>
   );

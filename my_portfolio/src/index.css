@@ -34,6 +34,10 @@ body:has(.card[data-color="green"]:hover) {
     @apply font-semibold sm:text-3xl text-xl relative font-poppins;
   }
 
+  .pink-gradient_text {
+    @apply bg-gradient-to-r from-[#ef23def4] to-[#eabce0] bg-clip-text text-transparent;
+  }
+
   .cyan-gradient_text {
     @apply bg-gradient-to-r from-[#00c6ff] to-[#0072ff] bg-clip-text text-transparent;
   }
@@ -47,7 +51,7 @@ body:has(.card[data-color="green"]:hover) {
   }
 
   .btn {
-    @apply text-black bg-gradient-to-r from-[#00c6ff] to-[#0072ff] focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center;
+    @apply text-black bg-gradient-to-r from-[#da6bda] to-[#b819a838] focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center;
   }
 
   .header {
@@ -67,7 +71,7 @@ body:has(.card[data-color="green"]:hover) {
   }
 
   .neo-btn {
-    @apply py-3 px-6 rounded-md text-cyan-500 text-center font-semibold sm:w-1/2 w-[90%] -bottom-5 absolute mx-auto right-0 left-0 flex justify-center items-center gap-3;
+    @apply py-3 px-6 rounded-md text-pink-300 text-center font-semibold sm:w-1/2 w-[90%] -bottom-5 absolute mx-auto right-0 left-0 flex justify-center items-center gap-3;
   }
 
   .cta {
@@ -167,90 +171,17 @@ body:has(.card[data-color="green"]:hover) {
 
 /* Neo Brutalism */
 .neo-brutalism-pink {
-  background: #f793f2;
+  background: #f793f247;
   position: relative;
-  border-radius: 10px;
+  border-radius: 12px;
   border: #db97de;
-  box-shadow: 0.6vmin 0.6vmin #336cc1, 1vmin 1vmin #0092db, 1vmin 1vmin #0092db,
-    0.65vmin 1vmin #0092db, 1vmin 0.65vmin #0092db;
+  box-shadow: 0.6vmin 0.6vmin #c133b8, 1vmin 1vmin #c133b8, 1vmin 1vmin #db00b7,
+    0.65vmin 1vmin #87c0dc00, 1vmin 0.65vmin #0092db6e;
 }
 
 .neo-brutalism-white {
-  background: #fff;
-  border: #fff;
-  box-shadow: 0.6vmin 0.6vmin #fff, 1vmin 1vmin #d2e4ff, 1vmin 1vmin #d2e4ff,
-    0.65vmin 1vmin #d2e4ff, 1vmin 0.65vmin #d2e4ff;
-}
-
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-  margin: 0 10px;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url("../src/assets/icons/sun.gif");
-  background-size: auto 100%;
-  transition: 0.4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 35px;
-  width: 35px;
-  left: 1px;
-  bottom: 0px;
-  background-image: url("../src/assets/icons/moon.gif");
-  background-size: cover;
-  transition: 0.4s;
-}
-
-input:checked + .slider {
-  background-color: #1e7ecc;
-}
-
-input:checked + .slider:before {
-  transform: translateX(22px);
-}
-
-.slider.round {
-  border-radius: 30px;
-}
-
-.slider.round:before {
-  border-radius: 60%;
-}
-
-.overlay-html-content {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 9 2px 4px rgba(205, 187, 187, 0.3);
-}
-
-.my3dSceneContainer {
-  position: relative; /* or 'absolute' */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -2%; /* Behind other content */
+  background: hsl(0, 0%, 100%);
+  border: #faf2f9;
+  box-shadow: 0.6vmin 0.6vmin #ff01ea, 1vmin 1vmin #eeeaed0e,
+    1vmin 1vmin #d2e4ff, 0.65vmin 1vmin #d2e4ff, 1vmin 0.65vmin #d2e4ff;
 }

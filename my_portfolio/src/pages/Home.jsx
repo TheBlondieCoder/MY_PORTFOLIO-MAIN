@@ -32,8 +32,8 @@ const Home = () => {
       screenScale = [1.5, 1.5, 1.5];
       screenPosition = [0, -0, 0];
     } else {
-      screenScale = [3, 5, -20];
-      screenPosition = [1.5, -1.5, -1];
+      screenScale = [4, 4, -5];
+      screenPosition = [0, 5, -30];
     }
     return [screenScale, screenPosition];
   };
@@ -65,17 +65,17 @@ const Home = () => {
               intensity={1}
             />
 
+            <group position={skyPosition}>
+              <Sky isRotating={isRotating} />
+            </group>
+
             <group position={dragonPosition}>
               <Dragon
                 isRotating={isRotating}
                 scale={dragonScale}
                 position={dragonPosition}
-                rotation={[0, 1, 0]}
+                rotation={[0, 0, 0]}
               />
-            </group>
-
-            <group position={skyPosition}>
-              <Sky isRotating={isRotating} />
             </group>
 
             <group position={islandPosition}>
