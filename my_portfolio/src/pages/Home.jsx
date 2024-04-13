@@ -12,6 +12,16 @@ const Home = () => {
 
   const [currentStage, setCurrentStage] = useState(1);
 
+  const [theme, setTheme] = useState("day"); // Initialize theme as 'day'
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => {
+      const newTheme = prevTheme === "day" ? "night" : "day";
+      console.log(`Toggling theme from ${prevTheme} to ${newTheme}`); // Log the theme change
+      return newTheme;
+    }); // Toggle between 'day' and 'night'
+  };
+
   const adjustIslandForScreenSize = () => {
     let screenScale, screenPosition;
 
@@ -44,54 +54,59 @@ const Home = () => {
   const skyPosition = [0, 0, 0];
 
   return (
-    <section className="w-full h-screen relative">
-      <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
-        {currentStage && <Homeinfo currentStage={currentStage} />}
-      </div>
-      <ErrorBoundary>
-        <Canvas
-          style={{ width: "100vw", height: "100vh" }}
-          className={`bg-transparent ${
-            isRotating ? "cursor-grabbing" : "cursor-grab"
-          }`}
-          camera={{ position: [0, 0, 5], near: 0.1, far: 1000 }}
-        >
-          <Suspense fallback={<Loader />}>
-            <directionalLight position={[1, 1, 1]} intensity={2} />
-            <ambientLight intensity={0.5} />
-            <hemisphereLight
-              skyColor="#b1e1ff"
-              groundColor="#000000"
-              intensity={1}
-            />
+    <div>
+      <button onClick={toggleTheme}>Day | Night</button>
 
-            <group position={skyPosition}>
-              <Sky isRotating={isRotating} />
-            </group>
-
-            <group position={dragonPosition}>
-              <Dragon
-                isRotating={isRotating}
-                scale={dragonScale}
-                position={dragonPosition}
-                rotation={[0, 0, 0]}
+      <section className="w-full h-screen relative">
+        <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
+          {currentStage && <Homeinfo currentStage={currentStage} />}
+        </div>
+        <ErrorBoundary>
+          <Canvas
+            style={{ width: "100vw", height: "100vh" }}
+            className={`bg-transparent ${
+              isRotating ? "cursor-grabbing" : "cursor-grab"
+            }`}
+            camera={{ position: [0, 0, 5], near: 0.1, far: 1000 }}
+          >
+            <Suspense fallback={<Loader />}>
+              <directionalLight position={[1, 1, 1]} intensity={2} />
+              <ambientLight intensity={0.5} />
+              <hemisphereLight
+                skyColor="#b1e1ff"
+                groundColor="#000000"
+                intensity={1}
               />
-            </group>
 
-            <group position={islandPosition}>
-              <Island
-                isRotating={isRotating}
-                setIsRotating={setIsRotating}
-                position={islandPosition}
-                rotation={islandRotation}
-                scale={islandScale}
-                setCurrentStage={setCurrentStage}
-              />
-            </group>
-          </Suspense>
-        </Canvas>
-      </ErrorBoundary>
-    </section>
+              <group position={skyPosition}>
+                <Sky theme={theme} />
+                <Sky isRotating={isRotating} />
+              </group>
+
+              <group position={dragonPosition}>
+                <Dragon
+                  isRotating={isRotating}
+                  scale={dragonScale}
+                  position={dragonPosition}
+                  rotation={[0, 0, 0]}
+                />
+              </group>
+
+              <group position={islandPosition}>
+                <Island
+                  isRotating={isRotating}
+                  setIsRotating={setIsRotating}
+                  position={islandPosition}
+                  rotation={islandRotation}
+                  scale={islandScale}
+                  setCurrentStage={setCurrentStage}
+                />
+              </group>
+            </Suspense>
+          </Canvas>
+        </ErrorBoundary>
+      </section>
+    </div>
   );
 };
 

@@ -7,8 +7,9 @@ import Night from "../assets/3d/night.glb";
 useGLTF.preload(Day);
 useGLTF.preload(Night);
 
-const Sky = ({ theme }) => {
-  // Since we're preloading, we can directly load without conditional rendering
+const Sky = ({ theme = "day" }) => {
+  console.log(`Rendering Sky with theme: ${theme}`);
+
   const dayModel = useGLTF(Day);
   const nightModel = useGLTF(Night);
 
