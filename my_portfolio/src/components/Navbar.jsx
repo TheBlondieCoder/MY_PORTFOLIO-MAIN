@@ -8,9 +8,9 @@ export const Navbar = ({ handleThemeChange, theme }) => {
     <header className="header">
       <NavLink
         to="/"
-        className="w-10 h-10 rounded-lg bg-white flex font-bold shadow-md items-center justify-center "
+        className="w-20 h-10 rounded-lg  flex font-bold  items-center justify-center "
       >
-        <p className="pink-gradient_text">Blondie</p>
+        <p className="pink-gradient_text mr-5 text-medium">Home</p>
       </NavLink>
       <nav className="flex text-lg font-medium">
         <NavLink

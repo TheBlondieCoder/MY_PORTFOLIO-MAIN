@@ -6,13 +6,20 @@ import Island from "../models/island";
 import Dragon from "../models/dragon";
 import Homeinfo from "../components/Homeinfo";
 import ErrorBoundary from "../components/Errorboundry";
+import DayIcon from "../assets/Icons/sun.gif";
+import NightIcon from "../assets/Icons/moon.gif";
 
 const Home = () => {
   const [isRotating, setIsRotating] = useState(false);
 
   const [currentStage, setCurrentStage] = useState(1);
 
-  const [theme, setTheme] = useState("day"); // Initialize theme as 'day'
+  const [theme, setTheme] = useState(() => {
+    const currentHour = new Date().getHours();
+    return currentHour >= 6 && currentHour < 18 ? "day" : "night";
+  });
+
+  const [isClicked, setIsClicked] = useState(false);
 
   const toggleTheme = () => {
     setTheme((prevTheme) => {
@@ -55,7 +62,18 @@ const Home = () => {
 
   return (
     <div>
-      <button onClick={toggleTheme}>Day | Night</button>
+      <button
+        className={`toggle-button ${
+          theme === "night" ? "toggle-button-night" : ""
+        } ${isClicked ? "toggle-button-clicked" : ""}`}
+        onClick={toggleTheme}
+      >
+        {theme === "day" ? (
+          <img src={NightIcon} alt="Night" />
+        ) : (
+          <img src={DayIcon} alt="Day" />
+        )}
+      </button>
 
       <section className="w-full h-screen relative">
         <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
@@ -79,8 +97,7 @@ const Home = () => {
               />
 
               <group position={skyPosition}>
-                <Sky theme={theme} />
-                <Sky isRotating={isRotating} />
+                <Sky theme={theme} isRotating={isRotating} />
               </group>
 
               <group position={dragonPosition}>

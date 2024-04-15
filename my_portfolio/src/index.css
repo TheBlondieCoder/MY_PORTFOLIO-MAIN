@@ -67,7 +67,7 @@ body:has(.card[data-color="green"]:hover) {
   }
 
   .info-box {
-    @apply mx-5 relative flex text-white flex-col gap-3 max-w-2xl neo-brutalism-pink pt-4 pb-12 px-8;
+    @apply mx-2 relative flex text-white flex-col gap-3 max-w-2xl neo-brutalism-pink pt-2 pb-12 px-4;
   }
 
   .neo-btn {
@@ -172,7 +172,7 @@ body:has(.card[data-color="green"]:hover) {
 /* Neo Brutalism */
 .neo-brutalism-pink {
   background: #f793f247;
-  position: relative;
+  position:inherit;
   border-radius: 12px;
   border: #db97de;
   box-shadow: 0.6vmin 0.6vmin #c133b8, 1vmin 1vmin #c133b8, 1vmin 1vmin #db00b7,
@@ -184,4 +184,42 @@ body:has(.card[data-color="green"]:hover) {
   border: #faf2f9;
   box-shadow: 0.6vmin 0.6vmin #ff01ea, 1vmin 1vmin #eeeaed0e,
     1vmin 1vmin #d2e4ff, 0.65vmin 1vmin #d2e4ff, 1vmin 0.65vmin #d2e4ff;
+}
+
+.toggle-button {
+  position: absolute;
+  top: 15px;
+  right: 50px;
+  padding: 3px;
+  font-size: 16px;
+  border-radius: 30px;
+  border: #c133b8;
+  cursor: pointer;
+  z-index: 1000;
+  transition: background-image 0.3s ease;
+  color: #fbf9f9;
+}
+
+.toggle-button img {
+  width: 35px;
+  height: 35px;
+  border-radius: 30px;
+}
+
+.toggle-button-night {
+  position: absolute;
+  top: 15px;
+  right: 50px;
+  padding: 3px;
+  font-size: 16px;
+  border-radius: 30px;
+  border: #c133b8;
+  cursor: pointer;
+  z-index: 1000;
+  transition: background-image 0.3s ease;
+  color: #fbf9f9;
+}
+
+.toggle-button-clicked {
+  transition: background-image 0.3s ease;
 }
